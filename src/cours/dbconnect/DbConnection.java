@@ -11,7 +11,7 @@ public class DbConnection {
 	/**
 	 * DSN to connect to the database
 	 */
-	static final String DB_URL = "jdbc:mysql://localhost/coursl3?serverTimezone=Europe/Paris";
+	static final String DB_URL = "jdbc:mysql://localhost/j2e?serverTimezone=Europe/Paris";
 
 	/**
 	 * Username to connect to the database

@@ -1,5 +1,7 @@
 package cours.dbconnect.model;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Represent a user as stored in the database.
  */
@@ -12,15 +14,10 @@ public class User
 	 */
 	private int id;
 	
-	/**
-	 * The user's firstname.
-	 */
+
 	private String firstname;
-	
-	/**
-	 * The user's lastname.
-	 */
 	private String lastname;
+	
 
 	public int getId() {
 		return id;
@@ -47,6 +44,13 @@ public class User
 	public User setLastname(String lastname) {
 		this.lastname = lastname;
 		return this;
+	}
+
+	public void define(HttpSession sess) {
+		sess.setAttribute("id", this.id);
+		sess.setAttribute("firstname", this.firstname);
+		sess.setAttribute("lastname", this.lastname);
+		
 	}
 	
 	
