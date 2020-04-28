@@ -82,6 +82,45 @@ public class UserMySQLDao {
 		
 		
 	}
+
+
+
+	public boolean creatUser(String firstname, String lastname, String mail, String password) {
+		// TODO Auto-generated method stub
+		Connection connection = DbConnection.getInstance();
+		Statement stmt;
+		try {
+			
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id, firstname, lastname FROM user WHERE email='"+mail+"' AND password ='"+pwd+"'");
+			
+			
+			rs.close();
+			
+			
+			
+			
+			stmt.close();
+			return true;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		
+		return false;
+		
+		
+	}
+	}
+
+
+
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

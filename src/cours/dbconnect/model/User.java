@@ -1,6 +1,9 @@
 package cours.dbconnect.model;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import cours.dbconnect.UserMySQLDao;
 
 /**
  * Represent a user as stored in the database.
@@ -17,6 +20,41 @@ public class User
 
 	private String firstname;
 	private String lastname;
+	private String mail;
+	private String password;
+	
+	public User() {
+		
+	}
+	
+	public void setUser(String firstname, String lastname, String mail, String password) {
+		setFirstname(firstname);
+		setLastname(lastname);
+		setMail(mail);
+		setPassword(password);
+		
+		
+		
+	}
+	
+	public boolean createUser(String firstname, String lastname, String mail, String password, HttpServletRequest request) {
+		setUser(firstname,lastname,mail,password);
+		
+		UserMySQLDao dao = new UserMySQLDao();
+		// Fetch all users from the database
+		
+		boolean conn = dao.creatUser(firstname,lastname, mail, password);
+		
+		if(conn) {
+			HttpSession sess = request.getSession();
+			mail = request.getParameter("mail");
+			password = request.getParameter("password");
+			
+		}
+		
+		
+		return conn;
+	}
 	
 
 	public int getId() {
@@ -51,6 +89,22 @@ public class User
 		sess.setAttribute("firstname", this.firstname);
 		sess.setAttribute("lastname", this.lastname);
 		
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

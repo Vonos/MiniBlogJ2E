@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cours.dbconnect.model.User;
+
 /**
  * Servlet implementation class CreateAccount
  */
@@ -36,9 +38,9 @@ public class CreateAccount extends HttpServlet {
 		out.println("    <label>Lastname:\t<input type=\"lastname\" name=\"lastname\" required=\"true\" /></label><br />");
 		out.println("    <label>mail:\t<input type=\"email\" name=\"mail\" required=\"true\" /></label><br />");
 		out.println("    <label>mot de passe:\t<input type=\"password\" name=\"password\" required=\"true\" /></label><br />");
-		out.println("    <input type=\"submit\" value=\"Connect\" />");
+		out.println("    <input type=\"submit\" value=\"Create Account\" />");
 		out.println("  </form>");
-		out.println("<li><a class=\"active_\" href=\"CreateAccount\">View Personal Information</a></li>");
+		
 		out.println("</body></html>");
 	}
 
@@ -47,7 +49,27 @@ public class CreateAccount extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+String projectName = this.getServletContext().getContextPath();
+		
+		
+		String servletName = request.getPathInfo();
+		
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String mail = request.getParameter("mail");
+		String password = request.getParameter("password");
+		
+		
+		if (mail.isEmpty() || password.isEmpty()) {
+		    response.sendRedirect(projectName + "/" + servletName);
+		    return;
+		}
+		
+		
+		User newUs = new User();
+		newUs.createUser(firstname, lastname, mail, password, request);
+		
 	}
 
 }

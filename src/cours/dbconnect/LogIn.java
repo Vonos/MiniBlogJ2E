@@ -52,15 +52,11 @@ public class LogIn extends HttpServlet {
 		
 		
 		String projectName = this.getServletContext().getContextPath();
-		/*
-		 * /ServletConnect
-		 */
+		
+		
 		String servletName = request.getPathInfo();
 		
-		/*
-		 * The parameter names (here login and password) are the ones set in
-		 * the input's field "name".
-		 */
+		
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		
@@ -77,8 +73,7 @@ public class LogIn extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		UserMySQLDao dao = new UserMySQLDao();
-		// Fetch all users from the database
-		
+				
 		Boolean conn = dao.connect(sess, mail, password);
 		
 		
