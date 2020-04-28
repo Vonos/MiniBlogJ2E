@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 public class UserMySQLDao {
 
 	/**
@@ -47,4 +49,40 @@ public class UserMySQLDao {
 		} 
 		return users;
 	}
+	
+	
+	
+	public boolean connect(HttpSession sess, String mail, String pwd) {
+		
+		Connection connection = DbConnection.getInstance();
+		Statement stmt;
+		
+		try {
+			stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT id, firstname, lastname FROM user WHERE email='"+mail+"' AND password ='"+pwd+"'");
+			
+			User u = new User();
+			while (rs.next()) {
+				
+				u.setId(rs.getInt("id"));
+				u.setFirstname(rs.getString("firstname"));
+				u.setLastname(rs.getString("lastname"));
+				
+			}
+			// Free resources
+			rs.close();
+			u.define(sess);
+			stmt.close();
+			return true;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		
+		return false;
+		
+		
+	}
+	
+	
+	
 }
