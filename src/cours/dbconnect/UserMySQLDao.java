@@ -92,10 +92,8 @@ public class UserMySQLDao {
 		try {
 			
 			stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT id, firstname, lastname FROM user WHERE email='"+mail+"' AND password ='"+pwd+"'");
 			
 			
-			rs.close();
 			
 			
 			
@@ -109,7 +107,7 @@ public class UserMySQLDao {
 		return false;
 		
 		
-	}
+	
 	}
 
 

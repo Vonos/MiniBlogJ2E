@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>Log In</display-name>
+  <servlet>
+  	<servlet-name>Connect</servlet-name>
+  	<servlet-class>cours.dbconnect.LogIn.java</servlet-class>
+  	
+  	
+  	<!-- The credentials of the root user. It has to type these
+  	to be allowed to see the Reserved page. -->
+  	<init-param>
+  		<description>The login of the user root.</description>
+  		<param-name>login</param-name>
+  		<param-value>root</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>The password of the user root.</description>
+  		<param-name>password</param-name>
+  		<param-value>jHgDgJj7gRfDdP9</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Login</servlet-name>
+  	<url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+</web-app>

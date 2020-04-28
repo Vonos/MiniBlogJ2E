@@ -37,7 +37,7 @@ public class User
 		
 	}
 	
-	public boolean createUser(String firstname, String lastname, String mail, String password, HttpServletRequest request) {
+	public boolean createUser(String firstname, String lastname, String mail, String password) {
 		setUser(firstname,lastname,mail,password);
 		
 		UserMySQLDao dao = new UserMySQLDao();
@@ -46,9 +46,7 @@ public class User
 		boolean conn = dao.creatUser(firstname,lastname, mail, password);
 		
 		if(conn) {
-			HttpSession sess = request.getSession();
-			mail = request.getParameter("mail");
-			password = request.getParameter("password");
+			
 			
 		}
 		
